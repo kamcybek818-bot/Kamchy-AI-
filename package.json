@@ -1,0 +1,20 @@
+{
+  "name": "kamchy-ai",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Сервер для искусственного интеллекта",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@green-api/whatsapp-api-client": "^0.4.8",
+    "@yandex-cloud/nodejs-sdk": "^2.9.3",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2"
+  }
+}

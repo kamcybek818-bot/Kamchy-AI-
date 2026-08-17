@@ -1,0 +1,1608 @@
+/* style.css —  ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 1 ИЗ 7) */
+
+/* ГЛОБАЛЬНЫЕ НАСТРОЙКИПРЕМИАЛЬНЫЙ ДЛЯ ТЁМНОЙ ТЕМЫ (ПО УМОЛЧАНИЮ) */
+html[data-theme="dark"] :root, :root {
+    --bg-main: #000000;       /* Чисто чёрный глубокий фон чата */
+    --bg-sidebar: #050507;    /* Очень тёмный сайдбар */
+    --text-color: #ffffff;    /* Белый текст */
+    --chat-user-bg: #222226;  /* Серые сообщения пользователя */
+    --border-color: #16161a;  /* Тёмные линии границ */
+    --brand-icon-color: #ffffff; /* Белый цвет иконки и названия робота */
+}
+
+/* ГЛОБАЛЬНЫЕ НАСТРОЙКИ ДЛЯ СВЕТЛОЙ ТЕМЫ (ВКЛЮЧИТСЯ ПРИ КЛИКЕ) */
+body[data-theme="light"] {
+    --bg-main: #f5f5f7;       /* Мягкий светлый фон чата */
+    --bg-sidebar: #ffffff;    /* Белоснежный сайдбар */
+    --text-color: #000000;    /* Насыщенный тёмный текст */
+    --chat-user-bg: #e9e9eb;  /* Светло-серые облачка пользователя */
+    --border-color: #e5e5e7;  /* Светлые линии границ */
+    --brand-icon-color: #111827; /* Угольно-чёрный цвет иконки и названия робота! */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    transition: background 0.2s, color 0.2s, transform 0.1s ease, left 0.3s ease;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-color);
+    overflow: hidden;
+    position: relative;
+}
+/* style.css — ПРЕМИАЛЬНЫЙ ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 2 ИЗ 7) */
+
+/* БОКОВАЯ ПАНЕЛЬ С ФУНКЦИЯМИ (САЙДБАР) */
+.sidebar {
+    width: 280px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+/* Блок бренда в самом верху перед кнопками чатов */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding-left: 10px;
+}
+
+/* Круглый робот-логотип в боковой панели */
+.brand-logo {
+    width: 36px;
+    height: 36px;
+    background: rgba(128, 128, 128, 0.08); /* Красивая полупрозрачная серая матовая подложка */
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-icon-color) !important; /* Автоматически красится под цвет темы */
+    transition: color 0.3s ease;
+}
+
+.brand-logo svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Название Kamchy AI в сайдбаре */
+.brand-name {
+    font-size: 24px; 
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--brand-icon-color) !important;
+    transition: color 0.3s ease;
+}
+
+.menu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+/* style.css — ПРЕМИАЛЬНЫЙ ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 3 ИЗ 7) */
+
+/* КРУГЛЫЕ МУТНЫЕ КНОПКИ ФУНКЦИЙ САЙДБАРА */
+.menu-item {
+    border-radius: 50px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 14px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: left;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+.menu-item.active {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: #ffffff !important;
+}
+
+/* Фиксация размеров всех иконок, чтобы они не сжимались */
+.menu-item svg, .round-action-btn svg, .clear-send-btn svg, .mobile-menu-btn svg {
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    background: var(--bg-main);
+}
+
+.tab-content {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+.tab-header {
+    padding: 25px 40px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+/* style.css — ПРЕМИАЛЬНЫЙ ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 4 ИЗ 7) */
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* БАЗОВЫЕ СТИЛИ ДЛЯ СООБЩЕНИЙ ЧАТА */
+.message {
+    padding: 16px 24px;
+    border-radius: 30px;
+    line-height: 1.5;
+    font-size: 15px;
+    word-wrap: break-word;
+    position: relative;
+}
+
+/* СООБЩЕНИЯ ПОЛЬЗОВАТЕЛЯ — СТИЛЬНОЕ ОБЛАЧКО */
+.message.user {
+    background: var(--chat-user-bg);
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+    max-width: 68%;
+    color: var(--text-color);
+}
+
+/* ОТВЕТЫ ИИ — МИНИМАЛИЗМ КАК В CHATGPT И CLAUDE */
+.chat-messages .message.ai {
+    align-self: flex-start;
+    border-bottom-left-radius: 0px;
+    background: transparent !important;
+    border: none !important;
+    padding: 10px 0px !important;
+    color: var(--text-color) !important; /* Умный цвет: меняется на черный в светлой теме */
+    box-shadow: none !important;
+    width: fit-content !important;
+    max-width: 68% !important;
+}
+
+.chat-messages .message.ai::before, 
+.chat-messages .message.ai::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* КРУГЛАЯ ПАНЕЛЬ ВВОДА (КАПСУЛА) С ЗАЩИТОЙ ГРАНИЦ */
+.chat-input-container {
+    padding: 20px 40px 40px 40px;
+    background: linear-gradient(transparent, var(--bg-main) 40%);
+}
+
+.input-wrapper {
+    max-width: 850px;
+    width: 100% !important;
+    margin: 0 auto;
+    position: relative;
+    background: rgba(128, 128, 128, 0.03);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(128, 128, 128, 0.08);
+    border-radius: 50px;
+    padding: 8px 12px 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* ОБНОВЛЕННЫЙ ИНПУТ — ТЕКСТ БОЛЬШЕ НЕ РАСШИРЯЕТ ПОЛЕ ВПРАВО */
+.input-wrapper input {
+    flex: 1 !important;
+    min-width: 0 !important;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-size: 16px;
+    padding: 10px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+/* style.css — ПРЕМИАЛЬНЫЙ ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 5 ИЗ 7) */
+
+/* КНОПКИ КАПСУЛЫ (МИКРОФОН, САМОЛЕТИК) С ИНВЕРСИЕЙ ЦВЕТОВ */
+.round-action-btn, .clear-send-btn {
+    border-radius: 50% !important;
+    background: rgba(128, 128, 128, 0.1) !important;
+    border: 1px solid rgba(128, 128, 128, 0.15) !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+    cursor: pointer;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.round-action-btn:hover, .clear-send-btn:hover {
+    background: rgba(128, 128, 128, 0.2) !important;
+}
+
+/* КНОПКА ОЧИСТКИ ТЕКСТА (КРЕСТИК «✕») */
+.clear-input-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0 !important;
+}
+.clear-input-btn:hover {
+    opacity: 1;
+}
+
+/* ВОЛНА ГОЛОСА — СЛУШАЕТСЯ ЦВЕТА ТЕМЫ */
+.mini-voice-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0 !important;
+}
+.mini-bar {
+    width: 2.5px;
+    height: 5px;
+    background: var(--text-color);
+    border-radius: 50px;
+    animation: miniBounce 0.6s infinite ease-in-out alternate;
+}
+.mini-bar:nth-child(2) { animation-delay: 0.15s; }
+.mini-bar:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes miniBounce {
+    100% { height: 16px; }
+}
+
+/* СТРОГАЯ МОНОХРОМНАЯ ЛАЗЕРНАЯ ЛИНИЯ ВОКРУГ КАПСУЛЫ ВВОДА */
+.input-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: 50px;
+    pointer-events: none;
+    /* Лазер строго монохромный (прозрачный-белый/черный-прозрачный) */
+    background: linear-gradient(90deg, transparent, var(--text-color), transparent);
+    background-size: 200% 100%;
+    background-position: 200% 0;
+    z-index: 5;
+    opacity: 0;
+}
+
+.input-wrapper.laser-pulse::after {
+    animation: laserRun 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.input-wrapper.laser-pulse {
+    position: relative;
+    animation: borderFlash 0.6s ease-in-out;
+}
+
+@keyframes borderFlash {
+    0%, 100% { border-color: var(--border-color); }
+    50% { border-color: var(--text-color); }
+}
+
+@keyframes laserRun {
+    0% { opacity: 1; background-position: 150% 0; }
+    50% { background-position: 50% 0; }
+    100% { opacity: 0; background-position: -50% 0; }
+}
+/* style.css — ПРЕМИАЛЬНЫЙ ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 6 ИЗ 7) */
+
+/* ОКНО РЕГИСТРАЦИИ */
+.auth-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+.auth-card {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    padding: 50px 40px;
+    border-radius: 40px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+}
+
+.auth-card h3 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.auth-input {
+    width: 100%;
+    padding: 16px 25px;
+    border-radius: 50px;
+    background: rgba(128, 128, 128, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    outline: none;
+    margin-bottom: 25px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.auth-submit-btn {
+    border-radius: 50px !important;
+    background: var(--text-color) !important;
+    color: var(--bg-main) !important;
+    padding: 16px 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none !important;
+}
+
+/* ИСТОРИЯ ПОИСКОВ */
+.history-list {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.history-list .history-item {
+    background: transparent !important;
+    border: none !important;
+    padding: 12px 0px !important;
+    color: var(--text-color) !important;
+    font-size: 14px !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* АНИМАЦИЯ ОЖИДАНИЯ АЛИСЫ (ТОЧКИ) */
+.thinking-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.thinking-dots span {
+    width: 7px;
+    height: 7px;
+    background: var(--text-color);
+    border-radius: 50%;
+    animation: kamchyDotsBounce 1.4s infinite ease-in-out both;
+}
+
+.thinking-dots span:nth-child(1) { animation-delay: -0.32s; }
+.thinking-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes kamchyDotsBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+/* style.css — ПРЕМИАЛЬНЫЙ ЧЁРНО-БЕЛЫЙ МОНОЛИТ (ЧАСТЬ 7 ИЗ 7) */
+/* =========================================================================
+   ЖЕСТКИЙ ФИКС АНИМАЦИИ БУКВЫ «К» И ПОЛНАЯ АДАПТАЦИЯ ШАПКИ ПК / ТЕЛИК / СМАРТФОН
+   ========================================================================= */
+
+/* АНИМАЦИЯ 1: Вращение внешних колец орбиты */
+@keyframes spaceOrbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* АНИМАЦИЯ 2: Роскошный 3D-разворот буквы К в стиле Apple */
+@keyframes smoothRotateY {
+    0% { transform: rotateY(-45deg) scale(1); }
+    50% { transform: rotateY(0deg) scale(1.05); }
+    100% { transform: rotateY(45deg) scale(1); }
+}
+
+/* Базовый контейнер шапки */
+.main-top-bar {
+    width: 100% !important;
+    height: 60px !important;
+    padding: 0 20px !important;
+    background: var(--bg-sidebar) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+.bar-content {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important; /* Все элементы выстраиваются по одной ниточке */
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+/* Кнопка трех линий (меню) слева */
+.mobile-menu-btn {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-color) !important;
+    cursor: pointer !important;
+    display: none !important; /* Скрыта на ноутбуках по умолчанию */
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 15px !important;
+    padding: 0 !important;
+}
+
+/* Связывающий контейнер бренда */
+.kamchy-brand-wrapper {
+    display: flex !important;
+    flex-direction: row !important; /* Буква К слева, название строго справа от неё */
+    align-items: center !important;
+    gap: 12px !important; /* Фиксированный отступ */
+    flex-shrink: 0 !important;
+}
+
+/* Контейнер анимированного логотипа */
+.logo-space-container {
+    position: relative !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important; /* Запрещаем сжимать кружок */
+}
+
+/* Внешние крутящиеся кольца (НАМЕРТВО ЗАПУСКАЕМ КРУЧЕНИЕ!) */
+.orbit-ring {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 2px solid transparent !important;
+    border-top: 2px solid var(--brand-icon-color) !important;  
+    border-bottom: 2px solid var(--brand-icon-color) !important; 
+    border-radius: 50% !important;
+    animation: spaceOrbit 3s linear infinite !important; /* Запуск бесконечного вращения */
+}
+
+/* Кружок под буквой К */
+.brand-letter-logo-animated {
+    width: 30px !important;
+    height: 30px !important;
+    background: rgba(128, 128, 128, 0.05) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Сама буква К (КРУТИТСЯ В 3D ПЕРЕВОРOТЕ!) */
+.spinning-k {
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    color: var(--brand-icon-color) !important;
+    display: inline-block !important;
+    transform-style: preserve-3d !important;
+    animation: smoothRotateY 4s ease-in-out infinite alternate !important; /* Включение 3D покачивания */
+}
+
+/* Название KamchyAI */
+.bar-title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--brand-icon-color) !important;
+    white-space: nowrap !important; /* Полный запрет падать на вторую строчку! */
+}
+
+/* Кнопка Premium жестко в правом верхнем углу */
+.kamchy-premium-btn {
+    margin-left: auto !important; /* Толкает слово PREMIUM в самый правый край */
+    background: var(--text-color) !important;
+    color: var(--bg-main) !important;
+    border: 2px solid var(--text-color) !important;
+    padding: 8px 18px !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    flex-shrink: 0 !important;
+    /* margin-right: 00px; */
+}
+
+.kamchy-premium-btn.pulsing {
+    animation: kamchyPulseBtn 1.5s infinite alternate ease-in-out;
+}
+@keyframes kamchyPulseBtn {
+    0% { box-shadow: 0 0 4px rgba(128,128,128,0.2); }
+    100% { box-shadow: 0 0 15px var(--text-color); }
+}
+
+/* 📱 ПОЛНАЯ АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ (ВКЛЮЧАЯ КНОПКУ МЕНЮ СЛЕВА) */
+@media (max-width: 768px) {
+    .main-top-bar {
+        padding: 0 15px !important; /* Убираем лишние сдвиги на смартфонах */
+    }
+    
+    /* Показываем три полоски слева только на мобилках */
+    .mobile-menu-btn {
+        display: flex !important;
+    }
+
+    .kamchy-brand-wrapper {
+        gap: 8px !important;
+    }
+
+    .bar-title {
+        font-size: 15px !important;
+    }
+
+    .kamchy-premium-btn {
+        padding: 6px 12px !important;
+        font-size: 10px !important;
+    }
+}
+
+.kamchy-premium-btn.pulsing {
+    animation: kamchyPulseBtn 1.5s infinite alternate ease-in-out;
+}
+@keyframes kamchyPulseBtn {
+    0% { box-shadow: 0 0 4px rgba(128,128,128,0.2); }
+    100% { box-shadow: 0 0 15px var(--text-color); }
+}
+
+.kamchy-premium-btn.premium-active-black {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+
+/* МОДАЛЬНОЕ ОКНО — СТРОГО ПО ЦЕНТРУ НА ВЕСЬ ЭКРАН */
+.kamchy-modal.hidden {
+    display: none !important;
+}
+
+.kamchy-modal {
+    position: fixed !important;
+    z-index: 9999 !important;
+    left: 0; top: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.96) !important;
+    display: flex !important;
+    justify-content: center !important; 
+    align-items: center !important;     /* Идеальный вертикальный и горизонтальный центр */
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 20px;
+    box-sizing: border-box !important;
+}
+
+.kamchy-modal-content {
+    background-color: #000000 !important;
+    border: 1px solid #16161a !important;
+    padding: 40px 30px !important;
+    width: 100% !important;
+    max-width: 900px !important; 
+    height: auto !important;
+    max-height: 90vh !important; /* Защита от вылета за экран мобильного */
+    overflow-y: auto !important;
+    color: #ffffff !important;
+    position: relative !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.8) !important;
+    box-sizing: border-box !important;
+}
+
+/* Сетка карточек внутри модалки */
+.kamchy-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 20px !important;
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+}
+
+.kamchy-card {
+    background: #070709 !important;
+    border: 1px solid #16161a !important;
+    padding: 30px 15px !important;
+    border-radius: 16px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transition: all 0.25s ease !important;
+}
+.kamchy-card:hover { border-color: #ffffff !important; transform: translateY(-3px) !important; }
+.kamchy-card-hit { border: 2px solid #ffffff !important; background: #0f0f12 !important; }
+
+.kamchy-badge {
+    position: absolute !important; top: -10px !important; left: 50% !important; transform: translateX(-50%) !important;
+    background: #ffffff !important; color: #000000 !important; font-size: 10px !important; font-weight: 800 !important;
+    padding: 3px 10px !important; border-radius: 50px !important; white-space: nowrap !important;
+}
+
+.kamchy-card-title { font-size: 13px !important; font-weight: 700 !important; color: #ffffff !important; }
+.kamchy-card-duration { font-size: 11px !important; color: #44444a !important; margin: 5px 0 15px 0 !important; }
+.kamchy-old-price { font-size: 12px !important; color: #3a3a3f !important; text-decoration: line-through !important; font-weight: 600 !important; }
+.kamchy-new-price { font-size: 20px !important; color: #ffffff !important; font-weight: 800 !important; margin-top: 2px !important; }
+
+/* Карточка СБП перевода */
+.kamchy-payment-section { margin-top: 30px !important; padding-top: 20px !important; border-top: 1px dashed #16161a !important; }
+.kamchy-payment-title { font-size: 14px !important; font-weight: 700; color: #ffffff !important; letter-spacing: 1px !important; }
+.kamchy-selected-text { color: #66666a !important; font-size: 11px !important; margin: 5px 0 20px 0 !important; text-align: center !important; }
+
+.kamchy-sbp-box {
+    background: #070709 !important; border: 1px solid #16161a !important; padding: 20px !important;
+    border-radius: 16px !important; max-width: 450px !important; margin: 0 auto 20px auto !important;
+    text-align: left !important; font-family: monospace !important;
+}
+.sbp-header { color: #44444a !important; font-weight: bold !important; font-size: 11px !important; margin-bottom: 10px !important; letter-spacing: 0.5px !important; }
+.sbp-row { font-size: 14px !important; color: #888888 !important; margin-bottom: 6px !important; font-weight: 600 !important; }
+.sbp-value-phone { color: #ffffff !important; font-weight: bold !important; letter-spacing: 0.5px !important; }
+.sbp-value-bank { color: #ffffff !important; font-weight: bold !important; }
+.sbp-warning { font-size: 11px !important; color: #ff3b30 !important; font-weight: bold !important; margin-top: 12px !important; text-transform: uppercase !important; }
+
+.kamchy-pay-btn {
+    background: #ffffff !important; color: #000000 !important; border: none !important;
+    padding: 14px 35px !important; font-size: 13px !important; font-weight: 700 !important;
+    border-radius: 50px !important; cursor: pointer !important; transition: background 0.2s !important;
+}
+.kamchy-pay-btn:hover { background: #e5e5e7 !important; }
+
+/* 📱 ПОЛНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ */
+@media (max-width: 768px) {
+    .main-top-bar { padding: 10px 15px 10px 65px !important; }
+    .bar-title { font-size: 15px !important; }
+    .kamchy-premium-btn { padding: 6px 12px !important; font-size: 10px !important; }
+    .kamchy-modal { align-items: flex-start !important; padding: 40px 10px !important; }
+    .kamchy-cards-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+}
+
+
+
+
+
+
+/* =========================================================================
+   ЖЕСТКИЙ APPLE-ФИКС ДЛЯ СМАРТФОНОВ: ПОЛНОЕ СКРЫТИЕ И ПЛАВНЫЙ ВЫЛЕТ МЕНЮ
+   ========================================================================= */
+
+@media (max-width: 768px) {
+    /* 1. ШАПКА: Выравниваем элементы и сдвигаем бренд под кнопку меню */
+    .main-top-bar {
+        padding: 0 15px 0 70px !important; /* Освобождаем железное место слева под круглую кнопку */
+        height: 60px !important;
+    }
+    
+    .kamchy-brand-wrapper {
+        gap: 8px !important;
+    }
+
+    .bar-title {
+        font-size: 15px !important;
+    }
+
+    .kamchy-premium-btn {
+        padding: 6px 12px !important;
+        font-size: 10px !important;
+    }
+
+    /* 2. КНОПКА МЕНЮ (ТРИ ПОЛОСКИ): Делаем её круглой, матовой и фиксированной в левом верхнем углу */
+    .mobile-menu-btn {
+        display: flex !important;
+        position: fixed !important;
+        top: 9px !important;
+        left: 15px !important;
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.07) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        color: var(--text-color) !important;
+        z-index: 10000 !important; /* Сидит выше всех элементов, чтобы кликаться в любой момент */
+        align-items: center !important;
+        justify-content: center !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-sizing: border-box !important;
+    }
+
+    /* 3. САЙДБАР (ЛЕВАЯ ПАНЕЛЬ): На смартфонах ПОЛНОСТЬЮ ИСЧЕЗАЕТ за левой границей экрана */
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 290px !important;
+        height: 100vh !important;
+        z-index: 10001 !important; /* Выкатывается прямо поверх шапки чата */
+        background: #050507 !important; /* Строгий выставочный ночной фон */
+        box-shadow: 25px 0 60px rgba(0, 0, 0, 0.8) !important;
+        
+        /* УЛЬТРА-ПЛАВНЫЙ ВЫЛЕТ ИОС-СТИЛЬ БЕЗ ЛАГОВ И ДЕРГАНИЙ */
+        transform: translateX(-100%) !important; /* Жёстко прячем влево */
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important; 
+    }
+    
+    /* Класс-триггер: плавно выкатывает панель на экран при нажатии */
+    .sidebar.active {
+        transform: translateX(0) !important;
+    }
+
+    /* 4. ЗАДНИЙ ФОН (ОТТЕНOК): Матовое Apple-размытие чата при открытом меню */
+    .sidebar-overlay {
+        position: fixed !important;
+        top: 0; left: 0;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(12px) !important; /* Элегантный блур заднего плана */
+        -webkit-backdrop-filter: blur(12px) !important;
+        z-index: 9999 !important; /* Сидит строго под выкатывающимся сайдбаром */
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        display: block !important;
+    }
+    
+    /* Активация размытия */
+    .sidebar-overlay.active {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    /* Корректировка отображения чата и вкладок на мобилках */
+    .tab-content {
+        height: calc(100vh - 60px) !important;
+    }
+    .chat-messages {
+        padding: 20px 15px 140px 15px !important; /* Сохраняем твой паддинг безопасности под инпут */
+    }
+}
+
+
+
+
+
+
+/* =========================================================================
+   БРОНЕБОЙНЫЙ ФИКС ДЛЯ КАМЧЫБЕКА: ВЫРАВНИВАНИЕ ПЛЮСА, МЕНЮ И ИНВЕРСИЯ ИКОНОК
+   ========================================================================= */
+
+/* 1. ЖЕСТКАЯ ИНВЕРСИЯ ВСЕХ SVG-ИКОНОК ПОД ЦВЕТ ТЕКУЩЕЙ ТЕМЫ */
+body[data-theme="light"] svg,
+body[data-theme="light"] .menu-item svg,
+body[data-theme="light"] .round-action-btn svg,
+body[data-theme="light"] .clear-send-btn svg,
+body[data-theme="light"] .mobile-menu-btn svg {
+    stroke: #000000 !important; /* В светлой теме все контуры становятся строго чёрными! */
+    fill: transparent;
+}
+
+/* Если в каких-то иконках заливка вместо контура (например, стоп-кадр или лого) */
+body[data-theme="light"] svg[fill="currentColor"],
+body[data-theme="light"] .brand-logo svg,
+body[data-theme="light"] .brand-letter-logo-animated span {
+    color: #000000 !important;
+    fill: #000000 !important;
+}
+
+/* Для темной темы возвращаем белый цвет */
+html[data-theme="dark"] svg, :root svg,
+.menu-item svg, .round-action-btn svg, .clear-send-btn svg, .mobile-menu-btn svg {
+    stroke: #ffffff !important;
+    transition: stroke 0.2s ease !important;
+}
+
+/* 2. ИДЕАЛЬНОЕ ВЫРАВНИВАНИЕ БЕЛОГО ПЛЮСИКА ПО НИЖНЕЙ КРОМКЕ ИНПУТА */
+.kamchy-plus-wrapper {
+    align-self: flex-end !important; /* Намертво прижимает весь блок плюса к нижней линии капсулы! */
+    margin-bottom: 2px !important;    /* Микро-выравнивание для идеального яблочного стиля */
+    flex-shrink: 0 !important;
+}
+
+/* 3. РЕАНИМАЦИЯ КНОПКИ МЕНЮ НА СМАРТФОНАХ (УБИРАЕМ ПЕРЕКРЫТИЕ КЛИКОВ) */
+@media (max-width: 768px) {
+    .main-top-bar {
+        pointer-events: none !important; /* Запрещаем бару перехватывать клики мимо кнопок */
+    }
+    
+    .bar-content {
+        pointer-events: none !important;
+    }
+
+    .kamchy-brand-wrapper, .kamchy-premium-btn {
+        pointer-events: auto !important; /* Возвращаем кликабельность кнопке Premium и бренду */
+    }
+
+    .mobile-menu-btn {
+        display: flex !important;
+        pointer-events: auto !important; /* Кнопка трех линий теперь ГАРАНТИРОВАННО принимает каждый тап! */
+        z-index: 10005 !important;       /* Поднимаем её на самый верхний слой над шапкой */
+    }
+}
+/* =========================================================================
+   ФИНАЛЬНЫЕ КОРРЕКТИРОВКИ ВЫРАВНИВАНИЯ ДЛЯ ПЛЮСА И ЦЕНТРАЛЬНОЙ МОДАЛКИ
+   ========================================================================= */
+
+/* Жестко прижимаем плюс к нижней кромке капсулы инпута в одну линию */
+.chat-input-container {
+    z-index: 1000 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-end !important; /* Ровняет плюс по нижней нитке инпута! */
+    justify-content: flex-start !important;
+    pointer-events: auto !important; /* Активируем кликабельность слоя */
+}
+
+.kamchy-plus-wrapper {
+    align-self: flex-end !important;
+    margin-bottom: 2px !important;    /* Идеальная посадка знака плюс */
+    margin-right: 12px !important;
+    flex-shrink: 0 !important;
+    pointer-events: auto !important;  /* Разрешаем кликать пальцем на мобилке */
+}
+
+/* МОДАЛЬНОЕ ОКНО Т-БАНКА — СТРОГО ПО ЦЕНТРУ ЭКРАНА ВДЫХАЕТ ИДЕАЛЬНО */
+.kamchy-modal {
+    position: fixed !important;
+    z-index: 99999 !important; /* Выше чата и сайдбара на порядок */
+    left: 0; top: 0; width: 100vw !important; height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.97) !important;
+    display: flex !important;
+    justify-content: center !important; /* Горизонтальный центр */
+    align-items: center !important;     /* СТРОГИЙ ВЕРТИКАЛЬНЫЙ ЦЕНТР ДЛЯ ВСЕХ УСТРОЙСТВ */
+    padding: 20px; box-sizing: border-box !important;
+}
+
+.kamchy-modal-content {
+    background-color: #000000 !important;
+    border: 1px solid #16161a !important;
+    padding: 40px 30px !important;
+    width: 100% !important; max-width: 850px !important;
+    height: auto !important; max-height: 90vh !important; /* Не дает улетать за рамки смартфона */
+    overflow-y: auto !important;
+    border-radius: 24px !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Фикс для мобильного дисплея */
+@media (max-width: 768px) {
+    .chat-input-container { padding: 10px !important; gap: 6px !important; }
+    .kamchy-plus-wrapper { margin-right: 6px !important; margin-bottom: 1px !important; }
+    .kamchy-modal { align-items: center !important; padding: 10px !important; } /* Сохраняем центр на мобилке */
+    .kamchy-cards-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+}
+/* =========================================================================
+   ЖЕСТКИЙ ПРЕМИАЛЬНЫЙ CSS-МОНОЛИТ: ИНВЕРСИЯ БУКВ, ИКОНОК И МОБИЛЬНЫЙ ФИКС ШАПКИ
+   ========================================================================= */
+
+/* АНИМАЦИИ КИНЕТИЧЕСКОГО ЛОГОТИПА И БУКВЫ «К» */
+@keyframes spaceOrbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes smoothRotateY {
+    0% { transform: rotateY(-45deg) scale(1); }
+    50% { transform: rotateY(0deg) scale(1.05); }
+    100% { transform: rotateY(45deg) scale(1); }
+}
+
+/* ГЛОБАЛЬНЫЙ КЛАСС ДЛЯ СКРЫТИЯ ДО АВТОРИЗАЦИИ */
+.hidden {
+    display: none !important;
+}
+
+/* УМНАЯ СВЕТЛАЯ ТЕМА ДЛЯ ВСЕХ БУКВ, ТЕКСТОВ, СЕЛЕКТОРОВ И ИКОНОК */
+body[data-theme="light"] {
+    color: #000000 !important;
+}
+body[data-theme="light"] .bar-title,
+body[data-theme="light"] .tab-header,
+body[data-theme="light"] .menu-item,
+body[data-theme="light"] .history-item,
+body[data-theme="light"] h3,
+body[data-theme="light"] p,
+body[data-theme="light"] select,
+body[data-theme="light"] option {
+    color: #000000 !important; /* Все буквы и тексты до единого становятся строго черными! */
+}
+body[data-theme="light"] select {
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,0.15) !important;
+}
+
+/* Автоматическая инверсия цветов всех SVG контуров в светлой теме */
+body[data-theme="light"] svg {
+    stroke: #000000 !important;
+}
+body[data-theme="light"] .mini-bar {
+    background: #000000 !important;
+}
+
+/* СТИЛИЗАЦИЯ БЕЛОГО/ЧЕРНОГО КРУГЛОГО ПЛЮСИКА КАПСУЛЫ */
+#applePlusBtn {
+    transition: background-color 0.2s, transform 0.2s !important;
+}
+#applePlusBtn svg {
+    stroke: #000000 !important; /* В темной теме плюс внутри круга черный */
+}
+/* Инверсия кружка плюса в светлой теме: сам круг чернеет, а плюс внутри него белеет! */
+body[data-theme="light"] #applePlusBtn {
+    background: #000000 !important;
+}
+body[data-theme="light"] #applePlusBtn svg {
+    stroke: #ffffff !important;
+}
+
+/* ВЫРАВНИВАНИЕ ВЕРХНЕЙ ПАНЕЛИ ЧАТА (ПК И СМАРТФОНЫ) */
+.main-top-bar {
+    width: 100% !important;
+    height: 60px !important;
+    padding: 0 20px !important;
+    background: var(--bg-sidebar) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+.bar-content {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+/* Кнопка трех линий (меню) слева — скрыта на ноутбуках */
+.mobile-menu-btn {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-color) !important;
+    cursor: pointer !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 15px !important;
+    padding: 0 !important;
+    z-index: 10005 !important;
+}
+
+/* Связывающий контейнер бренда */
+.kamchy-brand-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Контейнер анимированного логотипа */
+.logo-space-container {
+    position: relative !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+/* Внешние крутящиеся кольца орбиты */
+.orbit-ring {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 2px solid transparent !important;
+    border-top: 2px solid var(--brand-icon-color) !important;  
+    border-bottom: 2px solid var(--brand-icon-color) !important; 
+    border-radius: 50% !important;
+    animation: spaceOrbit 3s linear infinite !important;
+}
+
+.brand-letter-logo-animated {
+    width: 30px !important;
+    height: 30px !important;
+    background: rgba(128, 128, 128, 0.05) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+}
+
+/* Буква К в 3D пространстве */
+.spinning-k {
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    color: var(--brand-icon-color) !important;
+    display: inline-block !important;
+    transform-style: preserve-3d !important;
+    animation: smoothRotateY 4s ease-in-out infinite alternate !important;
+}
+
+.bar-title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--brand-icon-color) !important;
+    white-space: nowrap !important;
+}
+
+/* Кнопка Premium */
+.kamchy-premium-btn {
+    margin-left: auto !important; /* Толкает кнопку в крайний правый угол */
+    background: var(--text-color) !important;
+    color: var(--bg-main) !important;
+    border: 2px solid var(--text-color) !important;
+    padding: 8px 18px !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    flex-shrink: 0 !important;
+    z-index: 10001 !important; /* Сидит на отдельном слое, чтобы не мешать кнопке меню */
+}
+
+/* Переключатель видимости текста на ПК / Смартфоне */
+.kamchy-premium-btn .premium-text-pc { display: inline !important; }
+.kamchy-premium-btn .premium-text-mobile { display: none !important; }
+
+.kamchy-premium-btn.pulsing { animation: kamchyPulseBtn 1.5s infinite alternate ease-in-out; }
+@keyframes kamchyPulseBtn {
+    0% { box-shadow: 0 0 4px rgba(128,128,128,0.2); }
+    100% { box-shadow: 0 0 15px var(--text-color); }
+}
+.kamchy-premium-btn.premium-active-black { background: #000000 !important; color: #ffffff !important; border: 2px solid #ffffff !important; }
+
+/* СТИЛИЗАЦИЯ И ВЫРАВНИВАНИЕ НИЖНЕЙ КАПСУЛЫ */
+.chat-input-container {
+    position: fixed !important; bottom: 0 !important; right: 0 !important;
+    width: calc(100% - 280px) !important;
+    display: flex !important; flex-direction: row !important;
+    align-items: flex-end !important; justify-content: space-between !important;
+    padding: 15px 20px 25px 20px !important; background: var(--bg-main) !important;
+    box-sizing: border-box !important; z-index: 1000 !important;
+}
+
+.kamchy-plus-wrapper {
+    width: 44px !important; height: 44px !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    flex-shrink: 0 !important; margin-right: 12px !important; margin-bottom: 2px !important;
+}
+
+.input-wrapper {
+    flex-grow: 1 !important;
+    background: #111113 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    padding: 10px !important;
+    display: flex !important; flex-direction: column !important;
+    box-sizing: border-box !important; min-height: 48px !important;
+}
+
+.input-row-container { display: flex !important; flex-direction: row !important; align-items: center !important; width: 100% !important; gap: 8px !important; }
+.input-wrapper input { flex-grow: 1 !important; width: 100% !important; background: transparent !important; border: none !important; outline: none !important; color: #ffffff !important; font-size: 15px !important; padding: 4px 0 !important; }
+
+/* 📱 ПОЛНАЯ ЖЕСТКАЯ МОБИЛЬНАЯ АДАПТАЦИЯ (ПОДХОДИТ ПОД ЛЮБОЙ ТЕЛЕФОН) */
+@media (max-width: 768px) {
+    /* Отключаем перекрытие кликов: бар пропускает тапы, а кнопки ловят их на 100% */
+    .main-top-bar { padding: 0 15px !important; position: relative !important; }
+    
+    .mobile-menu-btn { 
+        display: flex !important; 
+        position: absolute !important; left: 15px !important; top: 18px !important;
+    }
+    
+    /* Сдвигаем бренд в центр, чтобы кнопка меню слева стояла свободно */
+    .kamchy-brand-wrapper { margin-left: 45px !important; gap: 8px !important; }
+    .bar-title { font-size: 15px !important; }
+    
+    /* Сокращаем текст кнопки Premium на смартфонах, чтобы она не вылезала за границы экрана */
+    .kamchy-premium-btn { padding: 6px 14px !important; font-size: 10px !important; }
+    .kamchy-premium-btn .premium-text-pc { display: none !important; }
+    .kamchy-premium-btn .premium-text-mobile { display: inline !important; }
+
+    /* Футер растягивается во всю ширину дисплея мобильного */
+    .chat-input-container { width: 100% !important; left: 0 !important; padding: 10px !important; }
+    .kamchy-plus-wrapper { margin-right: 8px !important; margin-bottom: 1px !important; }
+}
+
+
+
+
+
+/* =========================================================================
+   ФИНАЛЬНЫЙ КОРРЕКТИРУЮЩИЙ CSS: ИДЕАЛЬНЫЙ ПЛЮС, РАБОЧЕЕ МЕНЮ И ИНВЕРСИЯ БУКВ
+   ========================================================================= */
+
+/* 1. ЖЕСТКИЙ ПОДГОН НИЖНЕЙ КАПСУЛЫ: ПЛЮС И ИНПУТ В ОДНУ ЛИНИЮ */
+.chat-input-container {
+    position: fixed !important; bottom: 0 !important; right: 0 !important;
+    width: calc(100% - 280px) !important; /* На ПК вычитаем сайдбар */
+    display: flex !important; flex-direction: row !important;
+    align-items: flex-end !important; /* Намертво ровняем плюс и капсулу по нижней линии! */
+    justify-content: space-between !important;
+    padding: 15px 20px 25px 20px !important; background: var(--bg-main) !important;
+    box-sizing: border-box !important; z-index: 1000 !important;
+}
+
+.kamchy-plus-wrapper {
+    align-self: flex-end !important; /* Жестко держим плюс внизу капсулы ввода */
+    margin-bottom: 2px !important;
+    margin-right: 12px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+}
+
+/* Красивый инвертируемый плюс в кружке */
+#applePlusBtn {
+    background: #ffffff !important;
+    transition: background-color 0.2s, transform 0.2s !important;
+}
+#applePlusBtn svg {
+    stroke: #000000 !important; /* В темной теме плюс черный внутри белого круга */
+}
+/* Хак светлой темы для плюсика: круг чернеет, а плюс внутри него белеет! */
+body[data-theme="light"] #applePlusBtn {
+    background: #000000 !important;
+}
+body[data-theme="light"] #applePlusBtn svg {
+    stroke: #ffffff !important;
+}
+
+/* КРИТИЧЕСКИЙ ФИКС ИНПУТА: РАСТЯГИВАЕТСЯ ВО ВСЮ ШИРИНУ НА ВСЕХ УСТРОЙСТВАХ */
+.input-wrapper {
+    flex-grow: 1 !important; /* Занимает 100% свободного места справа от плюса */
+    width: 100% !important;
+    background: #111113 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    padding: 10px !important;
+    display: flex !important; flex-direction: column !important;
+    box-sizing: border-box !important; min-height: 48px !important;
+}
+
+/* 2. РЕАНИМАЦИЯ ЛЕВОЙ ВЕРХНЕЙ КНОПКИ МЕНЮ НА СМАРТФОНАХ */
+.main-top-bar {
+    width: 100% !important; height: 60px !important; padding: 0 20px !important;
+    background: var(--bg-sidebar) !important; border-bottom: 1px solid var(--border-color) !important;
+    box-sizing: border-box !important; display: flex !important; align-items: center !important;
+    position: relative !important; z-index: 9998 !important;
+}
+
+.mobile-menu-btn {
+    background: transparent !important; border: none !important;
+    color: var(--text-color) !important; cursor: pointer !important;
+    display: none !important; align-items: center !important; justify-content: center !important;
+    margin-right: 15px !important; padding: 0 !important;
+    z-index: 10005 !important; /* Поднимаем в самый верхний приоритет клика */
+}
+
+/* Связывающий контейнер бренда */
+.kamchy-brand-wrapper { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 12px !important; flex-shrink: 0 !important; }
+.logo-space-container { position: relative !important; width: 38px !important; height: 38px !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; }
+.bar-title { font-size: 18px !important; font-weight: 700 !important; color: var(--brand-icon-color) !important; white-space: nowrap !important; }
+
+/* Кнопка Premium */
+.kamchy-premium-btn {
+    margin-left: auto !important; background: var(--text-color) !important; color: var(--bg-main) !important;
+    border: 2px solid var(--text-color) !important; padding: 8px 18px !important; font-size: 11px !important;
+    font-weight: 900 !important; border-radius: 50px !important; cursor: pointer !important;
+    text-transform: uppercase !important; letter-spacing: 1px !important; flex-shrink: 0 !important;
+    z-index: 9999 !important;
+}
+.kamchy-premium-btn .premium-text-pc { display: inline !important; }
+.kamchy-premium-btn .premium-text-mobile { display: none !important; }
+
+/* 3. ИНВЕРСИЯ БУКВ И ТЕКСТОВ В СВЕТЛОЙ ТЕМЕ */
+body[data-theme="light"] { color: #000000 !important; }
+body[data-theme="light"] .bar-title,
+body[data-theme="light"] .tab-header,
+body[data-theme="light"] .menu-item,
+body[data-theme="light"] .history-item,
+body[data-theme="light"] h3,
+body[data-theme="light"] p,
+body[data-theme="light"] select,
+body[data-theme="light"] option {
+    color: #000000 !important; /* Все буквы до единой чернеют */
+}
+
+/* 📱 ПОЛНАЯ АДАПТАЦИЯ ШАПКИ И ФУТЕРА ДЛЯ СМАРТФОНОВ */
+@media (max-width: 768px) {
+    .main-top-bar { padding: 0 15px !important; }
+    
+    /* Кнопка трех линий жестко выводится слева на абсолютном слое */
+    .mobile-menu-btn { 
+        display: flex !important; 
+        position: absolute !important; left: 15px !important; top: 18px !important;
+    }
+    
+    .kamchy-brand-wrapper { margin-left: 45px !important; gap: 8px !important; }
+    .bar-title { font-size: 15px !important; }
+    
+    .kamchy-premium-btn { padding: 6px 14px !important; font-size: 10px !important; }
+    .kamchy-premium-btn .premium-text-pc { display: none !important; }
+    .kamchy-premium-btn .premium-text-mobile { display: inline !important; }
+
+    /* Футер на весь экран телефона */
+    .chat-input-container { width: 100% !important; left: 0 !important; padding: 10px !important; }
+    .kamchy-plus-wrapper { margin-right: 8px !important; margin-bottom: 1px !important; }
+}
+
+
+
+/* =========================================================================
+   ПРОДОЛЖЕНИЕ CSS: СТИЛИ ГРУППЫ ВВОДА КАРТЫ Т-БАНКА И СИСТЕМНЫХ ОВЕРЛЕЕВ
+   ========================================================================= */
+
+/* Контейнер всей группы полей ввода реквизитов карты */
+.kamchy-input-group {
+    max-width: 400px !important; /* Ограничиваем ширину, чтобы форма карты выглядела аккуратно */
+    width: 100% !important;
+    margin: 0 auto !important; /* Намертво центрируем блок внутри модального окна */
+    display: flex !important;
+    flex-direction: column !important; /* Поля выстраиваются строго сверху вниз */
+    gap: 12px !important; /* Хай-тек отступ между номером и строкой срока */
+    box-sizing: border-box !important;
+}
+
+/* Строка, в которой сидят срок действия (ММ/ГГ) и CVV код */
+.kamchy-input-row {
+    display: flex !important;
+    flex-direction: row !important; /* Выстраивает срок и CVV строго в одну линию */
+    width: 100% !important;
+    gap: 12px !important; /* Одинаковый отступ между маленькими инпутами */
+    box-sizing: border-box !important;
+}
+
+/* Стилизация самих строчек ввода данных карты */
+.kamchy-payment-input {
+    width: 100% !important;
+    background: #000000 !important; /* Всегда глубокий черный фон внутри инпутов */
+    border: 1px solid #16161a !important; /* Тёмная линия границы */
+    color: #ffffff !important; /* Белые вводимые цифры */
+    padding: 15px !important; /* Удобный жирный паддинг для тапов пальцем */
+    box-sizing: border-box !important;
+    text-align: center !important; /* Цифры пишутся строго по центру поля */
+    font-size: 15px !important;
+    font-family: monospace !important; /* Техно-шрифт */
+    letter-spacing: 2px !important; /* Разреженный шаг букв для престижного вида */
+    border-radius: 50px !important; /* Идеальное скругление под твою форму авторизации */
+    outline: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Эффект подсветки поля, когда гость начинает вбивать карту */
+.kamchy-payment-input:focus {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* КОРРЕКТИРОВКА ДЛЯ УМНОЙ СВЕТЛОЙ ТЕМЫ КАМЧЫБЕКА */
+body[data-theme="light"] .kamchy-payment-input {
+    background: #ffffff !important; /* В светлой теме поля карты становятся белыми */
+    border: 1px solid rgba(0, 0, 0, 0.15) !important; /* Серые рамки */
+    color: #000000 !important; /* Цифры становятся угольно-черными */
+}
+
+body[data-theme="light"] .kamchy-payment-input:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* =========================================================================
+   СТИЛИ ДЛЯ СИСТЕМНОГО ОВЕРЛЕЯ УВЕЛИЧЕНИЯ КАРТИНOК В СТИЛЕ CHATGPT
+   ========================================================================= */
+#chatgptImageOverlay {
+    transition: opacity 0.3s ease, background-color 0.3s ease !important;
+}
+
+/* Авто-подгон стилей кнопок оверлея в зависимости от темы */
+body[data-theme="light"] #chatgptImageOverlay {
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+body[data-theme="light"] #closeOverlayBtn {
+    background: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =========================================================================
+   📱 ПОЛНАЯ ЖЕСТКАЯ МОБИЛЬНАЯ АДАПТАЦИЯ КАРТОЧЕК ДЛЯ СМАРТФОНОВ
+   ========================================================================= */
+@media (max-width: 768px) {
+    /* Группа инпутов карты растягивается во всю ширину дисплея мобильного */
+    .kamchy-input-group {
+        max-width: 100% !important;
+        padding: 0 5px !important;
+    }
+    
+    .kamchy-payment-input {
+        padding: 13px !important; /* Чуть компактнее на телефонах */
+        font-size: 14px !important;
+    }
+    
+    /* Сдвиг формы оплаты, чтобы удобно было листать */
+    .kamchy-payment-section {
+        margin-top: 25px !important;
+        padding-top: 15px !important;
+    }
+}
+/* =========================================================================
+   ЖЕСТКИЙ КОРРЕКТИРУЮЩИЙ СДВИГ: ПОДНИМАЕМ МЕНЮ И ПЛЮСИК ЧУТЬ-ЧУТЬ НАВЕРХ
+   ========================================================================= */
+
+/* 1. ПОДНИМАЕМ КНОПКУ МЕНЮ (ТРИ ЛИНИИ) В ЛЕВОМ ВЕРХНЕМ УГЛУ НА СМАРТФОНАХ */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        /* Меняем top с 18px/9px на 6px, чтобы приподнять её повыше к верхнему краю экрана */
+        top: 6px !important; 
+        left: 15px !important;
+        height: 44px !important; /* Увеличиваем высоту, чтобы кнопка была сочной и ровной */
+    }
+}
+
+/* 2. ПОДНИМАЕМ БЕЛОЙ КРУГЛЫЙ ПЛЮСИК ЧУТЬ-ЧУТЬ ВВЕРХ В НИЖНЕМ ФУТЕРЕ */
+.kamchy-plus-wrapper {
+    /* Меняем margin-bottom с 2px на 10px, чтобы аккуратно приподнять плюс наверх,
+       и он встал идеально по центру строки ввода */
+    margin-bottom: 10px !important; 
+    align-self: flex-end !important;
+    flex-shrink: 0 !important;
+}
+
+/* Корректируем мобильный футер, чтобы приподнятый плюс смотрелся гармонично */
+@media (max-width: 768px) {
+    .kamchy-plus-wrapper {
+        /* На смартфонах тоже держим его приподнятым наверх в одну линию */
+        margin-bottom: 8px !important; 
+    }
+}
+
+
+
+
+/* БРОНЕБОЙНЫЙ CSS-БЛОК: ЗАПРЕЩАЕМ КЛИKИ И ВВОД НАУРОВНЕ ДИЗАЙНА */
+#kamchyCardNumber, 
+#kamchyCardExpiry, 
+#kamchyCardCvv,
+.kamchy-payment-input {
+    pointer-events: none !important;  /* Полный запрет для мышки и пальцев кликать сюда */
+    user-select: none !important;      /* Запрещаем выделять текст внутри */
+    background: #111113 !important;    /* Делаем инпуты блёклыми тёмно-серыми */
+    border-color: #222226 !important;  
+    color: #55555a !important;         /* Текст становится блёклым и нечитаемым */
+    opacity: 0.35 !important;          /* Принудительно гасим яркость полей до минимума */
+    cursor: not-allowed !important;    /* Показывает знак запрета при наведении */
+}
+
+/* Фикс для светлой темы, чтобы тоже было серо и закрыто */
+body[data-theme="light"] #kamchyCardNumber,
+body[data-theme="light"] #kamchyCardExpiry,
+body[data-theme="light"] #kamchyCardCvv,
+body[data-theme="light"] .kamchy-payment-input {
+    background: #e9e9eb !important;
+    border-color: #d1d1d6 !important;
+    color: #8e8e93 !important;
+}
+
+
+
+.hidden {
+    display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .install-card-overlay {
+        display: none; /* Скрыто по умолчанию */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4); /* Мягкое затемнение фона сайта */
+        backdrop-filter: blur(8px); /* Красивое размытие всего интерфейса сзади */
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 999999;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .install-card {
+        width: 90%;
+        max-width: 380px;
+        background: rgba(20, 20, 20, 0.85); /* Матовое стекло iOS */
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px; /* Мягкие круглые углы */
+        padding: 24px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        
+        /* Плавное появление из глубины */
+        transform: scale(0.85);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Классы для анимации включения */
+    .install-card-overlay.active {
+        display: flex;
+    }
+    .install-card-overlay.animate {
+        opacity: 1;
+    }
+    .install-card-overlay.animate .install-card {
+        transform: scale(1);
+    }
+
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card-title {
+        margin: 0 0 6px 0;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.4px;
+    }
+
+    .card-desc {
+        margin: 0 0 24px 0;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .card-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card-btn-main {
+        background: #ffffff;
+        color: #000000;
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    .card-btn-main:active {
+        transform: scale(0.97);
+    }
+
+    .card-btn-close {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.4);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
+    .card-btn-close:hover {
+        color: #fff;
+    }
